@@ -1,0 +1,19 @@
+version: '1'
+
+services:
+
+  docker-av:
+    image: gondar00/file-antivirus-engine
+    container_name: file-antivirus-engine
+    # uncomment and set the email address to receive email alerts when viruses are detected
+    #command:
+    # - /usr/local/install_alerts.sh email@example.net
+    volumes:
+      - ./data/queue:/data/av/queue
+      - ./data/ok:/data/av/ok
+      - ./data/nok:/data/av/nok
+    networks:
+      - avnetwork
+
+networks:
+  avnetwork:
